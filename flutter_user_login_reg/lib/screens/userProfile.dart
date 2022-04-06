@@ -11,14 +11,16 @@ import 'package:flutter_user_login_reg/widgets/profile_widget.dart';
 
 import '../services/auth_service.dart';
 
-import '../services/auth_service.dart';
-
 class ProfilePage extends StatefulWidget {
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  //text editor controllers
+  final email_editing_cntrlr = TextEditingController();
+  final password_editing_cntrlr = TextEditingController();
+
   //firebase user authneication state
   final AuthService _auth = AuthService();
   user_model currentUser = user_model();
@@ -125,25 +127,80 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
       );
 
-  //delete function
-  Future<void> _deleteUserAcc(String userId) async {
-    await _users.doc(userId).delete();
-
-    ScaffoldMessenger.of(context)
-        .showSnackBar(const SnackBar(content: Text('Account deleted!')));
-  }
+  // //delete function
+  // Future<void> _deleteUserAcc(String userId) async {
+  //   await _users.doc(userId).delete();
+  //
+  //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+  //       content: Text('Account deleted!')));
+  // }
+  //
+  // Future<void> _deleteAcc() async{
+  //
+  //   final String userId = _auth.currentUser!.uid;
+  //   try {
+  //     await _auth.currentUser!.delete();
+  //     Navigator.of(context).pushNamed('/');
+  //     await _deleteUserAcc(userId);
+  //
+  //   } on FirebaseAuthException catch (e) {
+  //     if (e.code == 'requires-recent-login') {
+  //       print('The user must reauthenticate before this operation can be executed.');
+  //     }
+  //   }
+  // }
 
   Future<void> _deleteAcc() async {
-    final String userId = _auth.currentUser!.uid;
-    try {
-      await _auth.currentUser!.delete();
-      Navigator.of(context).pushNamed('/');
-      await _deleteUserAcc(userId);
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'requires-recent-login') {
-        print(
-            'The user must reauthenticate before this operation can be executed.');
-      }
+    if (_auth.currentUser != null) {
+      await showModalBottomSheet(
+          isScrollControlled: true,
+          context: context,
+          builder: (BuildContext context) {
+            return Padding(
+              padding: EdgeInsets.only(
+                  top: 20,
+                  left: 20,
+                  right: 20,
+                  bottom: MediaQuery.of(context).viewInsets.bottom + 20),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextField(
+                    controller: email_editing_cntrlr,
+                    decoration: const InputDecoration(
+                      labelText: 'Username/Email',
+                    ),
+                  ),
+                  TextField(
+                    controller: password_editing_cntrlr,
+                    obscureText: true,
+                    decoration: const InputDecoration(labelText: 'Password'),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  ElevatedButton(
+                    child: const Text('Confirm Delete'),
+                    onPressed: () async {
+                      final String? email = email_editing_cntrlr.text;
+                      final String? password = password_editing_cntrlr.text;
+
+                      if (email != null && password != null) {
+                        await AuthService().deleteUser(email, password);
+                        email_editing_cntrlr.text = '';
+                        password_editing_cntrlr.text = '';
+                        Navigator.of(context).pushNamed('/');
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content: Text('Account Deleted Successfully')));
+                      }
+                    },
+                  )
+                ],
+              ),
+            );
+          });
     }
   }
 }

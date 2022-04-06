@@ -87,11 +87,9 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: const Text(
-          "SLIIT INFO",
+          "popcorn",
           style: TextStyle(
-              color: Color(0xff002F66),
-              fontWeight: FontWeight.w600,
-              fontSize: 25),
+              color: Colors.red, fontWeight: FontWeight.w600, fontSize: 25),
         ),
         automaticallyImplyLeading: false,
         actions: [
@@ -110,15 +108,20 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.only(right: 10),
           ),
           GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, '/userprofile');
-              },
-              child: Padding(
+            onTap: () {
+              Navigator.pushNamed(context, '/userprofile');
+            },
+            child: Padding(
                 padding: EdgeInsets.all(9.0),
-                child: CircleAvatar(
-                  backgroundImage: NetworkImage(currentUser.imagePath!),
-                ),
-              )),
+                child: currentUser.imagePath != null
+                    ? CircleAvatar(
+                        backgroundImage: NetworkImage(currentUser.imagePath!),
+                      )
+                    : const CircleAvatar(
+                        backgroundImage: NetworkImage(
+                            'https://firebasestorage.googleapis.com/v0/b/sliit-info-ctse.appspot.com/o/uploads%2Fimages.jpeg?alt=media&token=26ec85c5-b045-45da-8b57-05332a9b6665'),
+                      )),
+          ),
         ],
       ),
       body: PageView(
@@ -127,19 +130,19 @@ class _HomeScreenState extends State<HomeScreen> {
           Container(
             child: Padding(
               padding: const EdgeInsets.all(10.0),
-              child: GridView.count(
-                restorationId: 'grid_view_demo_grid_offset',
-                crossAxisCount: 2,
-                mainAxisSpacing: 8,
-                crossAxisSpacing: 8,
-                padding: const EdgeInsets.all(8),
-                childAspectRatio: 1,
-                // children: _photos(context).map<Widget>((photo) {
-                //   return _GridDemoPhotoItem(
-                //     photo: photo,
-                //   );
-                // }).toList(),
-              ),
+              // child: GridView.count(
+              //   restorationId: 'grid_view_demo_grid_offset',
+              //   crossAxisCount: 2,
+              //   mainAxisSpacing: 8,
+              //   crossAxisSpacing: 8,
+              //   padding: const EdgeInsets.all(8),
+              //   childAspectRatio: 1,
+              //   children: _photos(context).map<Widget>((photo) {
+              //     return _GridDemoPhotoItem(
+              //       photo: photo,
+              //     );
+              //   }).toList(),
+              // ),
             ),
           ),
           Column(
@@ -151,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: TextStyle(fontSize: 26),
                 ),
               ),
-              // Expanded(child: eventInfo()),
+              //Expanded(child: eventInfo()),
             ],
           ),
           Column(
@@ -163,7 +166,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: TextStyle(fontSize: 26),
                 ),
               ),
-              // Expanded(child: newsInfo()),
+              //Expanded(child: newsInfo()),
             ],
           ),
           Column(
@@ -175,6 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: TextStyle(fontSize: 26),
                 ),
               ),
+              //Expanded(child: lecturersInfo()),
             ],
           ),
         ],
