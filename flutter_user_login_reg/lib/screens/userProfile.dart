@@ -72,12 +72,13 @@ class _ProfilePageState extends State<ProfilePage> {
         children: [
           Text(
             "${user.f_name} ${user.l_name}",
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+            style: const TextStyle(
+                fontWeight: FontWeight.bold, fontSize: 24, color: Colors.red),
           ),
           const SizedBox(height: 4),
           Text(
             "${user.email}",
-            style: TextStyle(color: Colors.grey),
+            style: TextStyle(color: Colors.red),
           )
         ],
       );
@@ -126,29 +127,6 @@ class _ProfilePageState extends State<ProfilePage> {
           ],
         ),
       );
-
-  // //delete function
-  // Future<void> _deleteUserAcc(String userId) async {
-  //   await _users.doc(userId).delete();
-  //
-  //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-  //       content: Text('Account deleted!')));
-  // }
-  //
-  // Future<void> _deleteAcc() async{
-  //
-  //   final String userId = _auth.currentUser!.uid;
-  //   try {
-  //     await _auth.currentUser!.delete();
-  //     Navigator.of(context).pushNamed('/');
-  //     await _deleteUserAcc(userId);
-  //
-  //   } on FirebaseAuthException catch (e) {
-  //     if (e.code == 'requires-recent-login') {
-  //       print('The user must reauthenticate before this operation can be executed.');
-  //     }
-  //   }
-  // }
 
   Future<void> _deleteAcc() async {
     if (_auth.currentUser != null) {

@@ -28,7 +28,7 @@ class user_model {
     );
   }
 
-  //send data to the cloud firestore
+  //sending data to the cloud firestore
   Map<String, dynamic> toMap() {
     return {
       'uid': uid,

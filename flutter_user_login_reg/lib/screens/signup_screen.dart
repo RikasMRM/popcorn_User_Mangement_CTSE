@@ -76,6 +76,8 @@ class _SignUp_ScreenState extends State<SignUp_Screen> {
           prefixIcon: const Icon(Icons.account_circle),
           contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "First name",
+          fillColor: Colors.white,
+          filled: true,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
           )),
@@ -89,7 +91,10 @@ class _SignUp_ScreenState extends State<SignUp_Screen> {
           children: [
             const Expanded(
               flex: 2,
-              child: Text('Profile Picture'),
+              child: Text(
+                'Profile Picture',
+                style: TextStyle(color: Colors.white),
+              ),
             ),
             Expanded(
               flex: 2,
@@ -149,6 +154,8 @@ class _SignUp_ScreenState extends State<SignUp_Screen> {
           prefixIcon: const Icon(Icons.account_circle),
           contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Last name",
+          fillColor: Colors.white,
+          filled: true,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
           )),
@@ -164,7 +171,11 @@ class _SignUp_ScreenState extends State<SignUp_Screen> {
       child: DropdownButtonFormField<String>(
         value: accType,
         isExpanded: true,
-        hint: const Text('Select Account type'),
+        style: TextStyle(color: Colors.black),
+        hint: const Text(
+          'Select Account type',
+          style: TextStyle(color: Colors.white),
+        ),
         items: accTypes.map(buildMenuItem).toList(),
         onChanged: (value) => setState(() => this.accType = value),
       ),
@@ -190,6 +201,8 @@ class _SignUp_ScreenState extends State<SignUp_Screen> {
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
+          fillColor: Colors.white,
+          filled: true,
           prefixIcon: Icon(Icons.mail),
           contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Email address",
@@ -219,6 +232,8 @@ class _SignUp_ScreenState extends State<SignUp_Screen> {
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
+          fillColor: Colors.white,
+          filled: true,
           prefixIcon: Icon(Icons.lock),
           contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Password",
@@ -244,6 +259,8 @@ class _SignUp_ScreenState extends State<SignUp_Screen> {
       },
       textInputAction: TextInputAction.done,
       decoration: InputDecoration(
+          fillColor: Colors.white,
+          filled: true,
           prefixIcon: Icon(Icons.lock),
           contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Confirm Password",
@@ -290,9 +307,9 @@ class _SignUp_ScreenState extends State<SignUp_Screen> {
             )));
 
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.black,
           elevation: 0,
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.red),
@@ -317,7 +334,7 @@ class _SignUp_ScreenState extends State<SignUp_Screen> {
             Center(
                 child: SingleChildScrollView(
               child: Container(
-                  color: Colors.white,
+                  color: Colors.black,
                   child: Padding(
                     padding: const EdgeInsets.all(25.0),
                     child: Form(

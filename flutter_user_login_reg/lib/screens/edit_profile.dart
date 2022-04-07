@@ -107,10 +107,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       f_name_editing_cntrlr.text = '';
                       l_name_editing_cntrlr.text = '';
                       email_editing_cntrlr.text = '';
-
-                      // Navigator.of(context).pop();
-                      // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      //     content: Text('Updated Successfully')));
                     }
                   },
                 )

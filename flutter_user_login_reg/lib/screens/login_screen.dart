@@ -32,6 +32,7 @@ class _Login_ScreenState extends State<Login_Screen> {
     final username_field = TextFormField(
       autofocus: false,
       controller: username_controller,
+      //style: TextStyle(color: Colors.red),
       keyboardType: TextInputType.emailAddress,
       //email field validation
       validator: (val) {
@@ -46,9 +47,12 @@ class _Login_ScreenState extends State<Login_Screen> {
       onSaved: (val) {
         username_controller.text = val!;
       },
+      style: TextStyle(color: Colors.black),
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
           prefixIcon: Icon(Icons.mail),
+          fillColor: Colors.white,
+          filled: true,
           contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "username",
           border: OutlineInputBorder(
@@ -61,6 +65,7 @@ class _Login_ScreenState extends State<Login_Screen> {
       autofocus: false,
       controller: pwd_controller,
       obscureText: true,
+      style: TextStyle(color: Colors.black),
       //password field validation
       validator: (val) {
         RegExp regex = new RegExp(r'^.{6,}$');
@@ -80,6 +85,8 @@ class _Login_ScreenState extends State<Login_Screen> {
           prefixIcon: Icon(Icons.lock),
           contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "password",
+          fillColor: Colors.white,
+          filled: true,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
           )),
@@ -150,11 +157,11 @@ class _Login_ScreenState extends State<Login_Screen> {
     //signup_navigation
 
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
         body: Center(
           child: SingleChildScrollView(
               child: Container(
-                  color: Colors.white,
+                  color: Colors.black,
                   child: Padding(
                     padding: const EdgeInsets.all(25.0),
                     child: Form(
@@ -174,16 +181,19 @@ class _Login_ScreenState extends State<Login_Screen> {
                               const SizedBox(height: 20),
                               pwd_field,
                               const SizedBox(height: 40),
-                              guestViewBtn,
-                              const SizedBox(height: 20),
                               signInBtn,
+                              const SizedBox(height: 20),
+                              guestViewBtn,
                               const SizedBox(height: 20),
 
                               //account creation navigation
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  const Text("Don't have an account? "),
+                                  const Text(
+                                    "Don't have an account? ",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
                                   GestureDetector(
                                     onTap: () {
                                       Navigator.push(
