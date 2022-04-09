@@ -163,6 +163,7 @@ class _SignUp_ScreenState extends State<SignUp_Screen> {
 
     //account type field
     final accTypeField = Container(
+      //color: Colors.white,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         border: Border.all(width: 0.8),
@@ -171,7 +172,7 @@ class _SignUp_ScreenState extends State<SignUp_Screen> {
       child: DropdownButtonFormField<String>(
         value: accType,
         isExpanded: true,
-        style: TextStyle(color: Colors.black),
+        style: TextStyle(color: Colors.red),
         hint: const Text(
           'Select Account type',
           style: TextStyle(color: Colors.white),
